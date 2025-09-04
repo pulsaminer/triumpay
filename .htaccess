@@ -1,0 +1,51 @@
+RewriteEngine On
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Remove www from URL
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+# Clean URL rules
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ index.php?page=$1 [QSA,L]
+
+# Specific rules for referral links
+RewriteRule ^ref/([^/]+)/?$ index.php?page=register&ref=$1 [QSA,L]
+
+# Specific rules for other pages
+RewriteRule ^dashboard/?$ index.php?page=dashboard [QSA,L]
+RewriteRule ^login/?$ index.php?page=login [QSA,L]
+RewriteRule ^register/?$ index.php?page=register [QSA,L]
+RewriteRule ^staking/?$ index.php?page=staking [QSA,L]
+RewriteRule ^mining/?$ index.php?page=mining [QSA,L]
+RewriteRule ^ppob/?$ index.php?page=ppob [QSA,L]
+RewriteRule ^referral/?$ index.php?page=referral [QSA,L]
+RewriteRule ^logout/?$ logout.php [QSA,L]
+
+# Security headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+
+# Prevent directory browsing
+Options -Indexes
+
+# Error documents
+ErrorDocument 404 /pages/404.php
+ErrorDocument 500 /pages/500.php
+ErrorDocument 403 /pages/error.php?code=403
+ErrorDocument 401 /pages/error.php?code=401
+ErrorDocument 400 /pages/error.php?code=400
+ErrorDocument 405 /pages/error.php?code=405
+ErrorDocument 429 /pages/error.php?code=429
+
+# Cache control for static files
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>

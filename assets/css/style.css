@@ -1,0 +1,934 @@
+/* Triumpay App Modern Crypto Design */
+:root {
+    --primary-color: #6236ff; /* Purple */
+    --secondary-color: #28a745; /* Green */
+    --dark-color: #000000; /* Black */
+    --light-color: #f8f9fa;
+    --accent-color: #6c757d;
+    --crypto-blue: #0d6efd;
+    --crypto-purple: #6236ff;
+    --crypto-teal: #20c997;
+    --crypto-orange: #fd7e14;
+    --crypto-dark: #121212;
+    --crypto-darker: #0a0a0a;
+    --crypto-card: #1e1e1e;
+    --crypto-text: #e0e0e0;
+    --crypto-text-secondary: #a0a0a0;
+}
+
+/* Global Styles */
+body {
+    background-color: var(--crypto-dark);
+    color: var(--crypto-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px; /* Space for bottom navigation */
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(90deg, var(--crypto-darker), var(--dark-color));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.logo {
+    height: 35px;
+    filter: drop-shadow(0 0 2px rgba(98, 54, 255, 0.5));
+}
+
+.tagline {
+    font-size: 0.75rem;
+    color: var(--crypto-teal);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.header-icon {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.header-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.header-icon a {
+    text-decoration: none;
+}
+
+/* Navigation Styles */
+.navbar {
+    background: linear-gradient(90deg, var(--crypto-darker), var(--dark-color));
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    height: 70px;
+}
+
+.nav-link {
+    color: var(--crypto-text-secondary) !important;
+    font-size: 0.75rem;
+    padding: 8px 0 !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link.active {
+    color: var(--crypto-teal) !important;
+}
+
+.nav-link i {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.nav-link.active i {
+    color: var(--crypto-teal);
+}
+
+.nav-link:hover {
+    color: var(--crypto-text) !important;
+    transform: translateY(-2px);
+}
+
+/* Card Styles */
+.card {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    padding: 15px 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Border left utilities */
+.border-left-primary {
+    border-left: 0.25rem solid var(--primary-color) !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid var(--secondary-color) !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid var(--crypto-orange) !important;
+}
+
+.border-left-danger {
+    border-left: 0.25rem solid var(--primary-color) !important;
+}
+
+.border-left-info {
+    border-left: 0.25rem solid var(--crypto-blue) !important;
+}
+
+/* Background gradient */
+.bg-gradient-primary {
+    background: linear-gradient(90deg, var(--primary-color), #4b2acc);
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary-color), #4b2acc);
+    box-shadow: 0 4px 15px rgba(98, 54, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #7a5cff, #5a3dcc);
+    box-shadow: 0 6px 20px rgba(98, 54, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: linear-gradient(90deg, var(--secondary-color), #1e7e34);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(90deg, #218838, #1c7430);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background: linear-gradient(90deg, var(--crypto-blue), #0b5ed7);
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-info:hover {
+    background: linear-gradient(90deg, #0b5ed7, #0a58ca);
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background: linear-gradient(90deg, var(--crypto-orange), #e5670e);
+    box-shadow: 0 4px 15px rgba(253, 126, 20, 0.3);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(90deg, #e5670e, #d95f0d);
+    box-shadow: 0 6px 20px rgba(253, 126, 20, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(90deg, var(--primary-color), #4b2acc);
+    border-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--crypto-text);
+}
+
+.btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Form Styles */
+.form-control, .form-select {
+    background-color: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--crypto-text);
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(30, 30, 30, 0.9);
+    border-color: var(--crypto-teal);
+    box-shadow: 0 0 0 0.25rem rgba(32, 201, 151, 0.25);
+    color: var(--crypto-text);
+}
+
+.form-label {
+    color: var(--crypto-text-secondary);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-text {
+    color: var(--crypto-text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    padding: 20px 0;
+}
+
+.portfolio-title {
+    font-size: 1.2rem;
+    color: var(--crypto-text-secondary);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.portfolio-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.portfolio-change {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.portfolio-change.positive {
+    color: var(--secondary-color);
+}
+
+.portfolio-change.negative {
+    color: var(--primary-color);
+}
+
+/* Action Buttons */
+.action-btn {
+    padding: 15px 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.action-icon {
+    font-size: 1.5rem;
+}
+
+/* Asset Table */
+.asset-table {
+    color: var(--crypto-text);
+    margin-bottom: 0;
+}
+
+.asset-table th {
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--crypto-text-secondary);
+    font-weight: 600;
+    padding: 12px 15px;
+}
+
+.asset-table td {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 15px;
+}
+
+.asset-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.asset-icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 0.9rem;
+}
+
+.bg-orange {
+    background-color: var(--crypto-orange) !important;
+}
+
+/* Activity List */
+.activity-item {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.activity-content .fw-bold {
+    font-size: 1rem;
+}
+
+.activity-content .small {
+    font-size: 0.8rem;
+}
+
+.activity-amount {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Quick Action Cards */
+.quick-action-card {
+    padding: 15px 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    height: 100%;
+}
+
+.quick-action-card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Quick Icons */
+.quick-icon {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--crypto-card), var(--crypto-darker));
+    border-radius: 15px;
+    margin: 0 auto 10px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quick-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: var(--crypto-teal);
+}
+
+.quick-icon i {
+    font-size: 1.5rem;
+}
+
+/* Additional background colors */
+.bg-purple {
+    background-color: var(--crypto-purple) !important;
+}
+
+.bg-teal {
+    background-color: var(--crypto-teal) !important;
+}
+
+/* Progress Bar */
+.progress {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 10px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--crypto-teal), #1aa179);
+    border-radius: 10px;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-danger {
+    background: linear-gradient(90deg, rgba(220, 53, 69, 0.2), rgba(167, 29, 42, 0.2));
+    color: #f8d7da;
+}
+
+.alert-success {
+    background: linear-gradient(90deg, rgba(40, 167, 69, 0.2), rgba(30, 126, 52, 0.2));
+    color: #d4edda;
+}
+
+.alert-info {
+    background: linear-gradient(90deg, rgba(13, 110, 253, 0.2), rgba(11, 94, 215, 0.2));
+    color: #d1ecf1;
+}
+
+/* Table Styles */
+.table {
+    color: var(--crypto-text);
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--crypto-text-secondary);
+    font-weight: 600;
+    padding: 12px 15px;
+}
+
+.table td {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 15px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-dark {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.05);
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: rgba(255, 255, 255, 0.1);
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.075);
+    --bs-table-hover-color: #fff;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-borderless > :not(caption) > * > * {
+    border-bottom-width: 0;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group-text {
+    background-color: rgba(30, 30, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--crypto-text);
+}
+
+/* Dropdown */
+.dropdown-menu {
+    background-color: var(--crypto-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+    color: var(--crypto-text);
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--crypto-text);
+}
+
+.dropdown-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 5px 0;
+}
+
+/* Display Text */
+.display-5 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.display-6 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.h5 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+/* Text Colors */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--crypto-text-secondary) !important;
+}
+
+.text-success {
+    color: var(--secondary-color) !important;
+}
+
+.text-info {
+    color: var(--crypto-blue) !important;
+}
+
+.text-warning {
+    color: var(--crypto-orange) !important;
+}
+
+.text-danger {
+    color: var(--primary-color) !important;
+}
+
+.text-gray-800 {
+    color: var(--crypto-text) !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.text-white-50 {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.text-muted {
+    color: var(--crypto-text-secondary) !important;
+}
+
+/* Background Colors */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--accent-color) !important;
+}
+
+.bg-success {
+    background-color: var(--secondary-color) !important;
+}
+
+.bg-info {
+    background-color: var(--crypto-blue) !important;
+}
+
+.bg-warning {
+    background-color: var(--crypto-orange) !important;
+}
+
+.bg-danger {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-dark {
+    background-color: var(--crypto-darker) !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+/* Crypto-specific styles */
+.crypto-card {
+    background: linear-gradient(135deg, var(--crypto-card), var(--crypto-darker));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.crypto-balance {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 10px 0;
+    background: linear-gradient(90deg, var(--crypto-teal), var(--crypto-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.crypto-label {
+    font-size: 0.9rem;
+    color: var(--crypto-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.crypto-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, var(--crypto-teal), var(--crypto-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Mining Status */
+.mining-status-card {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.mining-timer {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--crypto-teal);
+    margin: 20px 0;
+}
+
+.mining-button {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    margin: 20px 0;
+}
+
+/* Staking Packages */
+.package-card {
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary-color);
+}
+
+.package-header {
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+}
+
+.package-silver {
+    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+}
+
+.package-gold {
+    background: linear-gradient(135deg, #ffd700, #daa520);
+}
+
+.package-platinum {
+    background: linear-gradient(135deg, #e5e4e2, #c0c0c0);
+}
+
+.package-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.package-details {
+    padding: 20px;
+}
+
+.package-detail-item {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+
+.package-detail-value {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--crypto-teal);
+}
+
+.package-image {
+    position: relative;
+}
+
+/* Referral Link */
+.referral-link-container {
+    background-color: rgba(32, 201, 151, 0.1);
+    border: 1px dashed var(--crypto-teal);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tagline {
+        font-size: 0.7rem;
+    }
+    
+    .display-5 {
+        font-size: 2rem;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+    }
+    
+    .crypto-balance {
+        font-size: 1.1rem;
+    }
+    
+    .package-name {
+        font-size: 1.3rem;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    .portfolio-amount {
+        font-size: 2rem;
+    }
+    
+    .action-btn {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+    }
+    
+    .action-btn i {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-link span {
+        font-size: 0.65rem;
+    }
+    
+    .display-5 {
+        font-size: 1.8rem;
+    }
+    
+    .display-6 {
+        font-size: 1.3rem;
+    }
+    
+    .crypto-balance {
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 12px;
+    }
+    
+    .logo {
+        height: 25px;
+    }
+    
+    .tagline {
+        font-size: 0.6rem;
+    }
+    
+    .portfolio-amount {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-title {
+        font-size: 1rem;
+    }
+    
+    .action-btn {
+        padding: 8px 3px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation for mining */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mining-button {
+    animation: pulse 2s infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid var(--crypto-teal);
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* No gutters utility */
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.no-gutters > .col,
+.no-gutters > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+/* Rounded corners */
+.rounded-4 {
+    border-radius: 20px !important;
+}
+
+.rounded-3 {
+    border-radius: 15px !important;
+}
+
+/* Border utilities */
+.border-white {
+    border-color: #fff !important;
+}
+
+.border-opacity-10 {
+    --bs-border-opacity: 0.1;
+}
+
+/* Package card enhancements */
+.package-card .card-body {
+    position: relative;
+    overflow: hidden;
+}
+
+.package-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(30deg);
+    z-index: 0;
+}
+
+.package-card .card-body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Compact wallet buttons for mobile */
+@media (max-width: 576px) {
+    .wallet-buttons .btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+    
+    .wallet-buttons .btn i {
+        font-size: 0.9rem;
+    }
+    
+    .wallet-balance {
+        font-size: 0.9rem;
+        margin-top: 10px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background-color: rgba(40, 167, 69, 0.2);
+        border: 1px solid rgba(40, 167, 69, 0.5);
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "trium-x-solana-build",
+  "version": "1.0.0",
+  "description": "Build scripts for Solana IIFE libraries",
+  "main": "index.js",
+  "scripts": {    
+    "build-web3": "node build-web3.js",
+    "build-spl": "node build-spl.js",
+    "build-all": "npm run build-web3 && npm run build-spl",
+    "build:prod": "node build-prod.js",   
+    "download-iife": "node download-iife.js",
+    "dev": "node build-and-test.js",
+    "build:test": "node build-and-test.js"
+  },
+  "keywords": [
+    "solana",
+    "web3",
+    "spl-token",
+    "iife"
+  ],
+  "author": "Trium-X Team",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/spl-token": "^0.4.14",
+    "@solana/web3.js": "^1.98.4",
+    "buffer": "^6.0.3",
+    "chokidar": "^4.0.3",
+    "esbuild": "^0.25.9",
+    "express": "^5.1.0",
+    "ws": "^8.18.3"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  }
+}
